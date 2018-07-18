@@ -46,5 +46,19 @@ consensus <- function(x, y) {
 #'
 fam_filter_gen <- function(gen, fam) {
   inner_join(gen, fam, by = c("sample", c("family" = "taxon"))) %>%
-    select(sample, family, trnL_fam.prop, its2_fam.prop, genus, its2_genus.prop = prop)
+    #select(sample, family, trnL_fam.prop, its2_fam.prop, genus, its2_genus.prop = prop) %>%
+    add_metadata()
 }
+
+
+#'
+#'
+#'
+add_metadata <- function(x) {
+  key <- read_csv("~/metaxr/inst/extdata/CT_sample_key.csv")
+  full_join(x, key, by = "sample") %>%
+    select(sample, colony, site, date, family, trnL_fam.prop,
+           its2_fam.prop, genus, prop)
+}
+
+
