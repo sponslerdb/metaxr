@@ -60,13 +60,11 @@ taxonomize <- function(x, db) {
 #'
 #'
 #'
-tally_genus <- function(x) {
+tallyGen <- function(x) {
   x %>% group_by(sample, genus) %>%
     tally() %>%
     mutate(prop = n/sum(n)) %>%
-    left_join(x, by = "genus") %>%
-    select(sample = sample.x, family = taxon, prop.x, prop.y, genus, prop) %>%
+    left_join(x, by = c("sample", "genus")) %>%
+    select(sample, family, genus, prop) %>%
     distinct()
-  # %>%
-  #   select(sample, family = taxon, prop.x, prop.y, genus, count = n, prop)
 }

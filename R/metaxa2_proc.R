@@ -40,4 +40,11 @@ consensus <- function(x, y) {
   return(out)
 }
 
-
+#'
+#'
+#'
+#'
+fam_filter_gen <- function(gen, fam) {
+  inner_join(gen, fam, by = c("sample", c("family" = "taxon"))) %>%
+    select(sample, family, trnL_fam.prop, its2_fam.prop, genus, its2_genus.prop = prop)
+}
