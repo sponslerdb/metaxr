@@ -38,7 +38,7 @@ top_hit <- function(x) {
 
 #' \code{prepNCBI} prepares the NCBI databases that \code{taxonomizr} needs; this takes some time, so it is better to do it once outside of the functions that use the databases later
 #'
-#' @return A list consisting of NCBI names and nodes
+#' @return A list consisting of NCBI names and nodes for input into \code{taxonomize}
 prepNCBI <- function() {
   list(taxonomizr::read.nodes('~/metaxr/inst/extdata/nodes.dmp'),
        taxonomizr::read.names('~/metaxr/inst/extdata/names.dmp'))
